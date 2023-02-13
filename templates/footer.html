@@ -1,0 +1,91 @@
+<footer class="site-footer">
+
+    <div class="container">
+        <div class="block-footer">
+            <div class="contact">
+                <div class="block-phone">
+                    <a class="phone" href="tel:+79220047288">+7 (922) 004 7288</a>
+                </div>
+                <a href="#" class="callback-link">Перезвоните мне</a>
+                <div class="adress">г. Тюмень</div>
+                <a href="mailto:V-A.P-V@yandex.ru" class="email">V-A.P-V@yandex.ru</a>
+            </div>
+            <div class="navigation">
+                <div class="links">
+                    <a href="#" class="styly-btn first">Калькулятор стоимости</a>
+                    <a href="#" class="styly-btn modal-call">Вызвать замерщика</a>
+                </div>
+                <div class="menus">
+                    <div class="column">
+                        <div class="footer-title">Акции</div>
+                    </div>
+                    <div class="column">
+                        <div class="footer-title">Технологии</div>
+                        <ul>
+                            <li><a href="#">Ниша под карниз</a></li>
+                            <li><a href="#">Бесшовные</a></li>
+                            <li><a href="#">Криволинейные</a></li>
+                            <li><a href="#">Двухуровневые</a></li>
+                            <li><a href="#">Комбинированные</a></li>
+                            <li><a href="#">Парящие</a></li>
+                            <li><a href="#">С подсветкой</a></li>
+                            <li><a href="#">Фотопечать</a></li>
+                            <li><a href="#">Световые линии</a></li>
+                            <li><a href="#">KRAAB 3.0</a></li>
+                            <li><a href="#">Резные потолки Apply</a></li>
+                            <li><a href="#">Звёздное небо</a></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <div class="footer-title">Помещения</div>
+                        <ul>
+                            <li><a href="/potolok/ceiling-1">Гостинная</a></li>
+                            <li><a href="/potolok/ceiling-2">Спальня</a></li>
+                            <li><a href="/potolok/ceiling-3">Кухня</a></li>
+                            <li><a href="/potolok/ceiling-4">Детская</a></li>
+                            <li><a href="/potolok/ceiling-5">Ванная</a></li>
+                            <li><a href="/potolok/ceiling-6">Прихожия</a></li>
+                            <li><a href="/potolok/ceiling-7">Лоджия</a></li>
+                            <li><a href="/potolok/ceiling-8">Офис</a></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <div class="footer-title">Фактура</div>
+                        <ul>
+                            <li><a href="#">Матовые</a></li>
+                            <li><a href="#">Глянцевые</a></li>
+                            <li><a href="#">Сатиновые</a></li>
+                            <li><a href="#">Тканевые</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<script>
+
+    let modal = document.querySelector('.modal');
+    let btnClose = document.querySelector('.btn-close');
+    let modalCall = document.querySelectorAll('.modal-call'),
+        modalShow = document.querySelector('.modal-show');
+
+    btnClose.addEventListener('click', function() {
+        modal.style.display = 'none';
+    })
+
+    for(const item of modalCall) {
+        item.addEventListener('click', function() {
+            modal.style.display = 'flex';
+        })
+    }
+
+    window.addEventListener('click', function(e) {
+        if(e.target == modalShow) {
+            modal.style.display = 'none';
+        }
+    })
+
+</script>

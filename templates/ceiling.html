@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content-ceiling">
+        <div class="container">
+            <div class="breadcrumbs">
+                <div class="iter">
+                    <a href="/potolok" class="iter-title opacity">Время потолков</a>
+                </div>
+                <div class="iter">
+                    <a href="/potolok/ceiling" class="iter-title opacity">Виды потолков</a>
+                </div>
+                <div class="iter">
+                    <a href="#" class="iter-title">{{ title }}</a>
+                </div>
+            </div>
+            
+            <div class="header-ceiling">
+                <div class="row">
+                    <div class="left">
+                        <h1 class="title-ceiling">{{ subTitle }}</h1>
+                        <p class="text-ceiling">{{ text }}</p>
+                    </div>
+                    <div class="rigth">
+                        <form action="" method="post">
+                            <div class="price-ceiling">
+                                От
+                                <span class="imortal">300 ₽/м2</span>
+                            </div>
+                            <div class="title-rigth">
+                                Вызвать замерщика
+                            </div>
+                            <div class="subform-ceiling">
+                                <div class="form-ceiling">
+                                    <input class="input-ceiling" type="text" placeholder="Ваше имя*">
+                                    <input class="input-ceiling" type="text" placeholder="Ваш телефон*">
+                                </div>
+                                <div class="form-ceiling">
+                                    <div class="free-ceiling">
+                                        <span class="tac">это бесплатно</span>
+                                    </div>
+                                    <input type="submit" class="btn" value="Вызвать">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>   
+</div>
+
+<section class="fon">
+    <div class="container">
+        <h2 class="section-title">{{ solutionTitle }}</h2>
+
+                <div class="items mb">
+                    {% for i in post %}
+                        <div class="items-block">
+                            <div class="photo" style="background: url('upload/{{ i.post_photo }}') center no-repeat; background-size: cover;">
+                            </div>
+                            <div class="examples-item">
+                                <div class="examples-title">{{ i.post_type }} {{ i.post_square }}</div>
+                                <div class="bottom">
+                                    <div class="examples-materials">
+                                        
+                                        {% if i.mat_name_1 %}
+                                            <div class="wrapper border">
+                                                <div class="label">{{ i.mat_name_1 }}</div>
+                                                <div class="value">{{ i.mat_count_1 }}</div>
+                                            </div>
+                                        {% endif %}
+        
+                                        {% if i.mat_name_2 %}
+                                            <div class="wrapper border">
+                                                <div class="label">{{ i.mat_name_2 }}</div>
+                                                <div class="value">{{ i.mat_count_2 }}</div>
+                                            </div>
+                                        {% endif %}
+        
+                                    </div>
+                                    <div class="examples-bottom">
+                                        <div class="wrapper">
+                                            <div class="label">Цена с установкой:</div>
+                                            <div class="examples-price">{{ i.post_price }} ₽</div>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+
+        <h3 class="section-title">Выберите потолок для себя:</h3>
+
+        <div class="tiles">
+
+            <div class="list">
+            
+            <div class="item">
+                <a href="#">
+                    <div class="title">Двухуровневые</div>
+                    <div class="price">от 590 руб/кв.м.</div>
+                    <img src="img/tile-arrow.svg" alt="arrow">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <div class="title">Световые линии</div>
+                    <div class="price">от 1200 руб/кв.м.</div>
+                    <img src="img/tile-arrow.svg" alt="arrow">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <span class="title">Парящие</span>
+                    <span class="price">от 800 руб/кв.м.</span>
+                    <img src="img/tile-arrow.svg" alt="arrow">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <span class="title">Бесшовные</span>
+                    <span class="price">от 350 руб/кв.м.</span>
+                    <img src="img/tile-arrow.svg" alt="arrow">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <span class="title">Комбинированные</span>
+                    <span class="price">от 640 руб/кв.м.</span>
+                    <img src="img/tile-arrow.svg" alt="arrow">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <span class="title">Криволинейные</span>
+                    <span class="price">от 490 руб/кв.м.</span>
+                    <img src="img/tile-arrow.svg" alt="arrow">
+                </a>
+            </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

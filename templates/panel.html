@@ -1,0 +1,55 @@
+{% include 'head.html' %}
+
+<div class="panel">
+    <div class="container">
+        <div class="form-padding">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="input-inline">
+                    <div class="block-input">
+                        <label for="selectType">Выберите помещение</label>
+                        <select name="type" id="selectType" class="input-panel">
+                            <option value="1" selected>Гостинная</option>
+                            <option value="2">Спальня</option>
+                            <option value="3">Кухня</option>
+                            <option value="4">Детская</option>
+                            <option value="5">Ванна</option>
+                            <option value="6">Прихожия</option>
+                            <option value="7">Офис</option>
+                            <option value="8">Лоджия</option>
+                        </select>
+                    </div>
+                    <div class="block-input">
+                        <label for="selectTypeMat">Выберите материал</label>
+                        <select name="typeMat" id="selectTypeMat" class="input-panel">
+                            <option value="1" selected>Матовый</option>
+                            <option value="2">Глянцевый</option>
+                            <option value="3">Сатиновый</option>
+                            <option value="4">Тканевый</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input name="square" class="input-panel" type="text" placeholder="Квадратура м. кв.">
+                    </div>    
+                </div>
+                {% for i in range(1, 5) %}
+                <div class="block">
+                    <input name="material-{{ i }}" class="input-panel not-block" type="text" placeholder="Материал">
+                    <input name="count-{{ i }}" class="input-panel not-block" type="text" placeholder="Количество">
+                </div>
+                {% endfor %}
+                <input name="price" type="text" class="input-panel" placeholder="Цена">
+                <input type="file"name='file'>
+                <input class="btn-admin" type="submit" value="Отправить">
+            </form>
+        </div>
+
+        <div class="posts">
+            <ul>
+            {% for i in post %}
+            <li>{{ i.post_id }} | {{ i.post_type }} | {{ i.post_price }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div> 
+
+</div>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% include 'head.html' %}
+<body>
+    <header class="site-header">
+        <div class="top">
+            <div class="container">
+                <div class="menu-center">
+                    <div class="menu-header">
+                        <a href="#">О нас</a>
+                        <a href="#">Отзывы</a>
+                        <a href="#">Примеры</a>
+                        <a href="#">Цены</a>
+                    </div>
+                    <a class="phone" href="tel:+79220047288">+7 (922) 004 7288</a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="container">
+                <div class="wrapper">
+                    <img src="img/logo.svg" alt="LOGO">
+                    <div class="links">
+                        <a href="#" class="styly-btn first">Калькулятор онлайн</a>
+                        <a href="#" class="styly-btn modal-call">Вызвать замерщика</a>
+                    </div>
+                </div>
+                <nav class="menu-nav">
+                    <div class="wrapper">
+                        <a href="#">Акции</a>
+                        <a href="#">Цены</a>
+                        <a href="/potolok/ceiling">Виды потолков</a>
+                        <a href="#">Готовые решения</a>
+                        <a href="#">Светильники</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+   
+
+{% block content %}{% endblock content %}
+
+{% include 'footer.html' %}
+
+</body>
+</html>

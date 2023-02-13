@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+    <div class="container">
+        <div class="block-title">
+            <h1 class="title-index">Натяжные потолки  - <span class="born">быстро, качественно, надёжно!</span></h1>
+        </div>
+    </div>
+</div>
+<div class="fon">
+    <div class="section-icon">
+        <div class="container">
+            <div class="wrapper">
+                <div class="iter-icon">
+                    <img src="img/money.png" alt="PRICE" class="icon">
+                    <div class="title-icon">Бесплатный дизайн и замер</div>
+                </div>
+                <div class="iter-icon">
+                    <img src="img/garanty.png" alt="PRICE" class="icon">
+                    <div class="title-icon">Год гарантии на полотно</div>
+                </div>
+                <div class="iter-icon">
+                    <img src="img/clear.png" alt="PRICE" class="icon">
+                    <div class="title-icon">Чистота после себя</div>
+                </div>
+                <div class="iter-icon">
+                    <img src="img/price.png" alt="PRICE" class="icon">
+                    <div class="title-icon">Цены ниже чем у конкурентов</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-examples">
+        <div class="container">
+            <div class="section-title">Готовые решения по установке потолков:</div>
+            <div class="items">
+            {% for i in post %}
+                <div class="items-block">
+                    <div class="photo" style="background: url('upload/{{ i.post_photo }}') center no-repeat; background-size: cover;">
+                    </div>
+                    <div class="examples-item">
+                        <div class="examples-title">{{ i.post_type }} {{ i.post_square }}</div>
+                        <div class="bottom">
+                            <div class="examples-materials">
+                                
+                                {% if i.mat_name_1 %}
+                                    <div class="wrapper border">
+                                        <div class="label">{{ i.mat_name_1 }}</div>
+                                        <div class="value">{{ i.mat_count_1 }}</div>
+                                    </div>
+                                {% endif %}
+
+                                {% if i.mat_name_2 %}
+                                    <div class="wrapper border">
+                                        <div class="label">{{ i.mat_name_2 }}</div>
+                                        <div class="value">{{ i.mat_count_2 }}</div>
+                                    </div>
+                                {% endif %}
+
+                                {% if i.mat_name_3 %}
+                                    <div class="wrapper border">
+                                        <div class="label">{{ i.mat_name_3 }}</div>
+                                        <div class="value">{{ i.mat_count_3 }}</div>
+                                    </div>
+                                {% endif %}
+
+                                {% if i.mat_name_4 %}
+                                    <div class="wrapper border">
+                                        <div class="label">{{ i.mat_name_4 }}</div>
+                                        <div class="value">{{ i.mat_count_4 }}</div>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                            <div class="examples-bottom">
+                                <div class="wrapper">
+                                    <div class="label">Цена с установкой:</div>
+                                    <div class="examples-price">{{ i.post_price }} ₽</div>
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="section-calculate">
+        <img src="img/fon-calc-people.png" alt="КАЛЬКУЛЯТОР" class="photo-calc">
+        <div class="container">
+            <form action="" class="form-calc" method="post">
+                <div class="calc-title">Рассчитайте стоимость потолка:</div>
+                <div class="calculation">
+                    <div class="wrapper">
+
+                        <div class="area tac">
+                            <div class="title">Площадь, кв.м:</div>
+                            <div class="area-count" id="inputArea">50</div>
+                            <input type="range" min="1" max="100" value="50" class="slider" id="rangeArea">
+                        </div>
+                        <div class="lamps tac">
+                            <div class="title">Светильников:</div>
+                            <div class="area-count" id="inputLamps">5</div>
+                            <input type="range" min="0" max="50" value="5" class="slider" id="rangeLamps">
+                        </div>
+
+                    </div>
+                    <input type="hidden" value="300" id="inputType" readonly>
+                    <div class="list">
+
+                        <label class="list-type">
+                            <input type="radio" class="hidden listType" name="type" value="300" checked>
+                            <span>Матовый</span>
+                        </label>
+
+                        <label class="list-type">
+                            <input type="radio" class="hidden listType" name="type" value="320">
+                            <span>Глянцевый</span>
+                        </label>
+
+                        <label class="list-type">
+                            <input type="radio" class="hidden listType" name="type" value="310">
+                            <span>Сатиновый</span>
+                        </label>
+
+                        <label class="list-type">
+                            <input type="radio" class="hidden listType" name="type" value="800">
+                            <span>Тканевый</span>
+                        </label>
+
+                    </div>
+
+                    <div class="result">
+                        <div class="title">Стоимость:</div>
+                        <div class="result-price"><span class="result-value">0</span> ₽</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="section-title">Как мы работаем</div>
+            <div class="steps">
+                <div class="step">
+                    <div class="head"> 
+                        <img src="img/call.png" alt="Вызов" class="icon-step">
+                    </div>
+                    <div class="title">Звонок нам</div>
+                    <div class="description">Оставьте заявку на сайте или позвоните нам.</div>
+                </div>
+                <div class="step">
+                    <div class="head"> 
+                        <img src="img/zamer.png" alt="Замер" class="icon-step">
+                    </div>
+                    <div class="title">Замер помещений</div>
+                    <div class="description">К вам приедет наш замерщик, рассчитает стоимость и поможет определиться с выбором.</div>
+                </div>
+                <div class="step">
+                    <div class="head"> 
+                        <img src="img/install.png" alt="Установка" class="icon-step">
+                    </div>
+                    <div class="title">Работы по установке</div>
+                    <div class="description">На следующий день, либо в удобную для вас дату и время, наши монтажники приступят к монтажу ваших потолков. Наши перфораторы со встроенным пылесосом обеспечат чистоту после монтажа.</div>
+                </div>
+                <div class="step">
+                    <div class="head"> 
+                        <img src="img/service.png" alt="Гарантия" class="icon-step">
+                    </div>
+                    <div class="title">Гарантия и сервис</div>
+                    <div class="description">После установки вы получите гарантию на ваши потолки . Срок гарантии на потолки вписан в договор, вы можете воспользоваться сервисным обслуживанием при возникновении непредвиденных обстоятельств.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal">
+    <div class="modal-show"></div>
+    <div class="window">
+        <div class="btn-close"></div>
+        <div class="modal-title">Вызвать замерщика</div>
+        <div class="modal-sub-title">С Вами свяжется наш специалист</div>
+        <form action="" class="modal-form" method="post">
+            <input type="text" name="name" class="input" placeholder="Ваше имя*">
+            <input type="text" name="phone" class="input" placeholder="Ваш телефон*">
+            <input type="submit" class="btn" value="Отправить">
+        </form>
+    </div>
+</div>
+
+<script>
+
+    let inputArea = document.querySelector('#inputArea');
+    let rangeArea = document.querySelector('#rangeArea');
+
+    let rangeLamps = document.querySelector('#rangeLamps');
+    let inputLamps = document.querySelector('#inputLamps');
+
+    let listType = document.querySelectorAll('.listType');
+    let inputType = document.querySelector('#inputType');
+
+    let resultValue = document.querySelector('.result-value');
+    let input = document.querySelectorAll('input');
+
+    let formmatter = new Intl.NumberFormat('ru');
+    
+    resultValue.innerText = formmatter.format(inputArea.innerText * inputType.value + (200 * inputLamps.innerText));
+
+    rangeArea.addEventListener('input', function() {
+        inputArea.innerText = rangeArea.value;
+    });
+
+    rangeLamps.addEventListener('input', function() {
+        inputLamps.innerText = rangeLamps.value;
+    });
+
+    for (const item of listType) {
+        item.addEventListener('change', function() {
+            inputType.value = item.value;
+        });
+    };
+
+    for (const item of input) {
+        item.addEventListener('change', function() {
+            resultValue.innerText = formmatter.format(inputArea.innerText * inputType.value + (200 * inputLamps.innerText));
+        })
+    }
+
+</script>
+
+{% endblock content %}
