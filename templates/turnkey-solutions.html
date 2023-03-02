@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="fon">
+    <div class="container">
+        <div class="breadcrumbs">
+            <div class="iter">
+                <a href="/potolok" class="iter-title opacity">Главная</a>
+            </div>
+            <div class="iter">
+                <a href="#" class="iter-title">{{ title }}</a>
+            </div>
+        </div> <!-- breadcrumbs -->
+
+        <h1 class="section-title">{{ title }}</h1>
+        <div class="list-custom-select">
+            <div class="item-custom-select">
+                <div class="label-custom-select">Фактуры</div>
+
+                <div class="input-custom-select">
+                    <div class="selected">
+                        <input type="hidden" name="solution" class="filter-input" value="">
+                        <span>Выберите тип</span>
+                    </div>
+                </div>
+
+                <ul class="dropdown">
+                    <li class="option">
+                        <span class="js-option" data-id="" data-text="Выберите тип">Выберите тип</span>
+                    </li>
+                    <li class="option">
+                        <span class="js-option" data-id="Матовый" data-text="Матовые потолки">Матовые потолки</span>
+                    </li>
+                    <li class="option">
+                        <span class="js-option" data-id="Глянцевый" data-text="Глянцевые потолки">Глянцевые потолки</span>
+                    </li>
+                    <li class="option">
+                        <span class="js-option" data-id="Сатиновый" data-text="Сатиновые потолки">Сатиновые потолки</span>
+                    </li>
+                    <li class="option">
+                        <span class="js-option" data-id="Тканевый" data-text="Тканевые потолки">Тканевые потолки</span>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="item-custom-select">
+                <div class="label-custom-select">Помещение</div>
+
+                <div class="input-custom-select-teh">
+                    <div class="selected-teh">
+                        <input type="hidden" name="solutionTeh" class="filter-input-teh">
+                        <span>Выберите тип</span>
+                    </div>
+                </div>
+
+                <ul class="dropdown-teh">
+                    <li class="option">
+                        <span class="js-option" data-id="" data-text="Выберите тип">Выберите тип</span>
+                    </li>
+                    <li class="option">
+                        <span class="js-option" data-id="Кухня" data-text="Кухня">Кухня</span>
+                    </li>
+                    <li class="option">
+                        <span class="js-option" data-id="Ванна" data-text="Ванна">Ванна</span>
+                    </li>
+                    <li class="option">
+                        <span class="js-option" data-id="Гостиная" data-text="Гостиная">Гостиная</span>
+                    </li>
+                    <li class="option">
+                        <span class="js-option" data-id="Детская" data-text="Детская">Детская</span>
+                    </li>
+                    <li class="option">
+                        <span class="js-option" data-id="Спальня" data-text="Спальня">Спальня</span>
+                    </li>
+                    <li class="option">
+                        <span class="js-option" data-id="Прихожая" data-text="Прихожая">Прихожая</span>
+                    </li>
+                    <li class="option">
+                        <span class="js-option" data-id="Лоджия" data-text="Лоджия">Лоджия</span>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="items">
+            {% for i in post %}
+                <div class="items-block aos-item aos-init aos-animate" data-aos="fade-up">
+                    <div class="photo" style="background: url('upload/{{ i.post_photo }}') center no-repeat; background-size: cover;"></div>
+
+                    <div class="examples-item">
+                        <div class="examples-top">
+                            <div class="examples-title">{{ i.post_type }} {{ i.post_square }}</div>
+                        </div>
+                        <!-- <div class="bottom"> -->
+                            <!-- <div class="examples-bottom"> -->
+                                <div class="wrapper">
+                                    <div class="label">Цена с установкой:</div>
+                                    <div class="examples-price">{{ i.post_price }} ₽</div>
+                                </div>    
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    </div>
+                </div>
+            {% endfor %}
+        </div>                
+
+
+    </div> <!-- container  -->
+</div> <!-- fon  -->
+
+<!-- jquery and AOS -->
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js
+"></script>
+
+<script>
+
+let inputCustomSelect = document.querySelector('.input-custom-select');
+let inputCustomSelectTeh = document.querySelector('.input-custom-select-teh');
+let dropDown = document.querySelector('ul.dropdown');
+let dropDownTeh = document.querySelector('ul.dropdown-teh');
+let jsOption = document.querySelectorAll('.dropdown .js-option');
+let jsOptionTeh = document.querySelectorAll('.dropdown-teh .js-option');
+let result = document.querySelector('.selected span');
+let resultTeh = document.querySelector('.selected-teh span');
+let filterInput = document.querySelector('.filter-input');
+let filterInputTeh = document.querySelector('filter-input-teh');
+
+inputCustomSelect.addEventListener('click', function() {
+    dropDown.classList.toggle('opened');
+});
+
+inputCustomSelectTeh.addEventListener('click', function() {
+    dropDownTeh.classList.toggle('opened');
+});
+
+// for(let el of jsOption) {
+//     el.addEventListener('click', function() {
+//         result.innerHTML = el.dataset.text;
+//         filterInput.value = el.dataset.id;
+//         dropDown.classList.toggle('opened');
+//     })
+// };
+
+// for(let elTeh of jsOptionTeh) {
+//     elTeh.addEventListener('click', function() {
+//         resultTeh.innerHTML = elTeh.dataset.text;
+//         filterInputTeh.value = elTeh.dataset.id;
+//         dropDownTeh.classList.toggle('opened');
+//     })
+// };
+
+$(document).ready(function() {
+    $('.dropdown-teh .js-option').on('click', function() {
+        $('.selected-teh span').html($(this).attr('data-text'));
+        $('.filter-input-teh').val($(this).attr('data-id')).trigger('change');
+        $('ul.dropdown-teh').toggleClass('opened');
+    });
+
+    $('.dropdown .js-option').on('click', function() {
+        $('.selected span').html($(this).attr('data-text'));
+        $('.filter-input').val($(this).attr('data-id')).trigger('change');
+        $('ul.dropdown').toggleClass('opened');
+    })
+
+    $('.item-custom-select input[type="hidden"]').on('change', function() {
+        $.ajax({
+            method: "POST",
+            url: "/potolok/turnkey-solutions",
+            data: { solution: $('.filter-input').val(), tehnology: $('.filter-input-teh').val() },
+            success: function(data) {
+                $('.items').html(data);
+            }
+        });
+    })
+});
+
+</script>
+
+{% endblock content %}

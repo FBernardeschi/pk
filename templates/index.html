@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="section-examples">
+    <div class="section-examples" data-aos="fade-up">
         <div class="container">
             <div class="section-title">Готовые решения по установке потолков:</div>
             <div class="items">
@@ -41,8 +41,8 @@
                     <div class="photo" style="background: url('upload/{{ i.post_photo }}') center no-repeat; background-size: cover;">
                     </div>
                     <div class="examples-item">
-                        <div class="examples-title">{{ i.post_type }} {{ i.post_square }}</div>
-                        <div class="bottom">
+                        <div class="examples-top">
+                            <div class="examples-title">{{ i.post_type }} {{ i.post_square }}</div>
                             <div class="examples-materials">
                                 
                                 {% if i.mat_name_1 %}
@@ -74,6 +74,9 @@
                                 {% endif %}
 
                             </div>
+                        </div>
+                        
+                        <div class="bottom">
                             <div class="examples-bottom">
                                 <div class="wrapper">
                                     <div class="label">Цена с установкой:</div>
@@ -88,7 +91,7 @@
         </div>
     </div>
 
-    <div class="section-calculate">
+    <div class="section-calculate" data-aos="fade-up">
         <img src="img/fon-calc-people.png" alt="КАЛЬКУЛЯТОР" class="photo-calc">
         <div class="container">
             <form action="" class="form-calc" method="post">
@@ -142,7 +145,7 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section" data-aos="fade-up">
         <div class="container">
             <div class="section-title">Как мы работаем</div>
             <div class="steps">
@@ -178,20 +181,6 @@
         </div>
     </div>
 
-</div>
-
-<div class="modal">
-    <div class="modal-show"></div>
-    <div class="window">
-        <div class="btn-close"></div>
-        <div class="modal-title">Вызвать замерщика</div>
-        <div class="modal-sub-title">С Вами свяжется наш специалист</div>
-        <form action="" class="modal-form" method="post">
-            <input type="text" name="name" class="input" placeholder="Ваше имя*">
-            <input type="text" name="phone" class="input" placeholder="Ваш телефон*">
-            <input type="submit" class="btn" value="Отправить">
-        </form>
-    </div>
 </div>
 
 <script>

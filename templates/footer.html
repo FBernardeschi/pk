@@ -22,18 +22,18 @@
                     <div class="column">
                         <div class="footer-title">Технологии</div>
                         <ul>
-                            <li><a href="#">Ниша под карниз</a></li>
-                            <li><a href="#">Бесшовные</a></li>
-                            <li><a href="#">Криволинейные</a></li>
-                            <li><a href="#">Двухуровневые</a></li>
-                            <li><a href="#">Комбинированные</a></li>
-                            <li><a href="#">Парящие</a></li>
-                            <li><a href="#">С подсветкой</a></li>
-                            <li><a href="#">Фотопечать</a></li>
-                            <li><a href="#">Световые линии</a></li>
-                            <li><a href="#">KRAAB 3.0</a></li>
-                            <li><a href="#">Резные потолки Apply</a></li>
-                            <li><a href="#">Звёздное небо</a></li>
+                            <li><a href="/potolok/tehnology-1">Ниша под карниз</a></li>
+                            <li><a href="/potolok/tehnology-2">Бесшовные</a></li>
+                            <li><a href="/potolok/tehnology-3">Криволинейные</a></li>
+                            <li><a href="/potolok/tehnology-4">Двухуровневые</a></li>
+                            <li><a href="/potolok/tehnology-5">Комбинированные</a></li>
+                            <li><a href="/potolok/tehnology-6">Парящие</a></li>
+                            <li><a href="/potolok/tehnology-7">С подсветкой</a></li>
+                            <li><a href="/potolok/tehnology-8">Фотопечать</a></li>
+                            <li><a href="/potolok/tehnology-9">Световые линии</a></li>
+                            <li><a href="/potolok/tehnology-10">KRAAB 3.0</a></li>
+                            <li><a href="/potolok/tehnology-11">Резные потолки Apply</a></li>
+                            <li><a href="/potolok/tehnology-12">Звёздное небо</a></li>
                         </ul>
                     </div>
                     <div class="column">
@@ -52,10 +52,10 @@
                     <div class="column">
                         <div class="footer-title">Фактура</div>
                         <ul>
-                            <li><a href="#">Матовые</a></li>
-                            <li><a href="#">Глянцевые</a></li>
-                            <li><a href="#">Сатиновые</a></li>
-                            <li><a href="#">Тканевые</a></li>
+                            <li><a href="/potolok/type-1">Матовые</a></li>
+                            <li><a href="/potolok/type-2">Глянцевые</a></li>
+                            <li><a href="/potolok/type-3">Сатиновые</a></li>
+                            <li><a href="/potolok/type-4">Тканевые</a></li>
                         </ul>
                     </div>
                 </div>
@@ -64,28 +64,3 @@
     </div>
 
 </footer>
-
-<script>
-
-    let modal = document.querySelector('.modal');
-    let btnClose = document.querySelector('.btn-close');
-    let modalCall = document.querySelectorAll('.modal-call'),
-        modalShow = document.querySelector('.modal-show');
-
-    btnClose.addEventListener('click', function() {
-        modal.style.display = 'none';
-    })
-
-    for(const item of modalCall) {
-        item.addEventListener('click', function() {
-            modal.style.display = 'flex';
-        })
-    }
-
-    window.addEventListener('click', function(e) {
-        if(e.target == modalShow) {
-            modal.style.display = 'none';
-        }
-    })
-
-</script>

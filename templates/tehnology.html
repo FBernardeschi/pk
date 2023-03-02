@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content-ceiling">
+    <div class="container">
+        <div class="breadcrumbs">
+            <div class="iter">
+                <a href="/potolok" class="iter-title opacity">Главная</a>
+            </div>
+            <div class="iter">
+                <a href="/potolok/ceiling" class="iter-title opacity">Виды потолков</a>
+            </div>
+            <div class="iter">
+                <a href="#" class="iter-title">{{ title }}</a>
+            </div>
+        </div> <!-- breadcrumbs -->
+
+        <div class="header-ceiling">
+            <div class="row">
+                <div class="left">
+                    <h1 class="title-ceiling">{{ subTitle }}</h1>
+                    <p class="text-ceiling">{{ text }}</p>
+                </div>
+                <div class="rigth">
+                    <form action="" method="post">
+                        <div class="price-ceiling">
+                            От
+                            <span class="imortal">{{ price }} ₽/м2</span>
+                        </div>
+                        <div class="title-rigth">
+                            Вызвать замерщика
+                        </div>
+                        <div class="subform-ceiling">
+                            <div class="form-ceiling">
+                                <input class="input-ceiling" type="text" placeholder="Ваше имя*">
+                                <input class="input-ceiling" type="text" placeholder="Ваш телефон*">
+                            </div>
+                            <div class="form-ceiling">
+                                <div class="free-ceiling">
+                                    <span class="tac">это бесплатно</span>
+                                </div>
+                                <input type="submit" class="btn" value="Вызвать">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="section-examples">
+    <div class="container">
+        <h3 class="section-title">{{ title }}, примеры и цены:</h3>
+        <div class="list">
+            {% for i in post %}
+            <div class="item-type-ceiling">
+                <div class="items-teh">
+                    <span class="photo-type-ceiling" style="background-image: url('upload/{{ i.post_photo }}');"></span>
+                    <span class="info-type-ceiling">
+                        <span class="tc-title">{{ i.post_type_teh }}</span>
+                        <span class="tc-price">{{ i.post_type }}</span>
+                        <span class="tc-price">от {{ price }} руб/кв.м.</span>
+                    </span>
+                </div>    
+            </div>
+            {% endfor %}
+
+        </div>
+
+        {% include 'calc-page.html' %}
+    </div>
+</div>        
+
+
+{% endblock content %}

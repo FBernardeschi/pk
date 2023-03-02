@@ -6,7 +6,7 @@
     <div class="container">
         <div class="breadcrumbs">
             <div class="iter">
-                <a href="/potolok" class="iter-title opacity">Время потолков</a>
+                <a href="/potolok" class="iter-title opacity">Главная</a>
             </div>
             <div class="iter">
                 <a href="#" class="iter-title">Виды потолков</a>
@@ -18,7 +18,7 @@
             <h3 class="title-type-ceiling">Фактуры</h3>
             <div class="list">
                 <div class="item-type-ceiling">
-                    <a href="#">
+                    <a href="/potolok/type-1">
                         <span class="photo-type-ceiling" style="background-image: url('img/type-ceiling-mat.jpg');"></span>
                         <span class="info-type-ceiling">
                             <span class="tc-title">Матовые</span>
@@ -27,7 +27,7 @@
                     </a>
                 </div>
                 <div class="item-type-ceiling">
-                    <a href="#">
+                    <a href="/potolok/type-2">
                         <span class="photo-type-ceiling" style="background-image: url('img/type-ceiling-gl.jpg');"></span>
                         <span class="info-type-ceiling">
                             <span class="tc-title">Глянцевые</span>
@@ -36,7 +36,7 @@
                     </a>
                 </div>
                 <div class="item-type-ceiling">
-                    <a href="#">
+                    <a href="/potolok/type-3">
                         <span class="photo-type-ceiling" style="background-image: url('img/type-ceiling-sat.jpg');"></span>
                         <span class="info-type-ceiling">
                             <span class="tc-title">Сатиновые</span>
@@ -45,7 +45,7 @@
                     </a>
                 </div>
                 <div class="item-type-ceiling">
-                    <a href="#">
+                    <a href="/potolok/type-4">
                         <span class="photo-type-ceiling" style="background-image: url('img/type-ceiling-tk.jpg');"></span>
                         <span class="info-type-ceiling">
                             <span class="tc-title">Тканевые</span>
@@ -140,8 +140,27 @@
                     </a>
                 </div>
             </div>
-        </div>    
-    </div>
+
+            <h3 class="title-type-ceiling">Технологии</h3>
+            <div class="list">
+                {% for i in arrayTehnology %}
+                <div class="item-type-ceiling">
+                    <a href="/potolok/tehnology-{{ i[0] }}">
+                        <span class="photo-type-ceiling" style="background-image: url('img/{{ i[1] }}');"></span>
+                        <span class="info-type-ceiling">
+                            <span class="tc-title">{{ i[2] }}</span>
+                            <span class="tc-price">от {{ i[3] }} руб/кв.м.</span>
+                        </span>
+                    </a>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            {% include 'calc-page.html' %}
+
+        </div> <!-- fon  -->
+    </div> <!-- container -->
 </section>
 
 {% endblock content %}

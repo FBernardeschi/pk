@@ -1,0 +1,19 @@
+{% for i in post %}
+        <div class="items-block" data-aos="fade-up">
+            <div class="photo" style="background: url('upload/{{ i.post_photo }}') center no-repeat; background-size: cover;"></div>
+
+            <div class="examples-item">
+                <div class="examples-top">
+                    <div class="examples-title">{{ i.post_type }} {{ i.post_square }}</div>
+                </div>
+                <div class="bottom">
+                    <div class="examples-bottom">
+                        <div class="wrapper">
+                            <div class="label">Цена с установкой:</div>
+                            <div class="examples-price">{{ i.post_price }} ₽</div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endfor %}

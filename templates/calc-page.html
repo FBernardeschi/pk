@@ -1,0 +1,99 @@
+<h3 class="title-type-ceiling">Расчитать стоимость</h3>
+    <div class="calculate-modul">
+
+        <form action="" class="callback-form" method="post">
+            <input type="hidden" class="hidden-price input-calc-page" value="300" readonly>
+            <div class="calculation-page">
+                <div class="quantity">
+                    <div class="area tac">
+                        <div class="title">Площадь, кв.м:</div>
+                        <div class="area-count" id="inputArea">10</div>
+                        <input type="range" min="1" max="100" value="50" class="slider input-calc-page" id="rangeArea">
+                    </div>
+                    <div class="lamps tac">
+                        <div class="title">Светильников:</div>
+                        <div class="area-count" id="inputLamps">5</div>
+                        <input type="range" min="0" max="50" value="5" class="slider input-calc-page" id="rangeLamps">
+                    </div>
+                </div>
+
+                <input type="hidden" value="300" id="inputType" readonly>
+                <div class="list">
+
+                    <label class="list-type">
+                        <input type="radio" class="hidden listType input-calc-page" name="type" value="300" checked>
+                        <span>Матовый</span>
+                    </label>
+
+                    <label class="list-type">
+                        <input type="radio" class="hidden listType input-calc-page" name="type" value="320">
+                        <span>Глянцевый</span>
+                    </label>
+
+                    <label class="list-type">
+                        <input type="radio" class="hidden listType input-calc-page" name="type" value="310">
+                        <span>Сатиновый</span>
+                    </label>
+
+                    <label class="list-type">
+                        <input type="radio" class="hidden listType input-calc-page" name="type" value="800">
+                        <span>Тканевый</span>
+                    </label>
+
+                </div>
+            </div> <!-- calculate -->
+            <div class="price-style">
+                <div class="cost">
+                    <div class="title-page-calc">Стоимость:</div>
+                    <div class="result-price"><span class="result-value">200</span> ₽</div>
+                </div>
+                <div class="list-btn">
+                    <input type="text" class="input" placeholder="Ваше имя*">
+                    <input type="text" class="input" placeholder="Ваш телефон*">
+                    <input type="submit" class="btn-calc" value="Вызвать замерщика">
+                </div>
+            </div>
+        </form>
+    </div>
+
+<script>
+
+    let inputArea = document.querySelector('#inputArea');
+    let rangeArea = document.querySelector('#rangeArea');
+
+    let rangeLamps = document.querySelector('#rangeLamps');
+    let inputLamps = document.querySelector('#inputLamps');
+
+    let listType = document.querySelectorAll('.listType');
+    let inputType = document.querySelector('#inputType');
+
+    let resultValue = document.querySelector('.result-value');
+    let input = document.querySelectorAll('.input-calc-page');
+
+    let formmatter = new Intl.NumberFormat('ru');
+    
+    resultValue.innerText = formmatter.format(inputArea.innerText * inputType.value + (240 * inputLamps.innerText));
+
+    rangeArea.addEventListener('input', function() {
+        inputArea.innerText = rangeArea.value;
+    });
+
+    rangeLamps.addEventListener('input', function() {
+        inputLamps.innerText = rangeLamps.value;
+    });
+
+    console.log(listType);
+
+    for (const item of listType) {
+        item.addEventListener('change', function() {
+            inputType.value = item.value;
+        });
+    };
+
+    for (const item of input) {
+        item.addEventListener('change', function() {
+            resultValue.innerText = formmatter.format(inputArea.innerText * inputType.value + (240 * inputLamps.innerText));
+        })
+    };
+
+</script>

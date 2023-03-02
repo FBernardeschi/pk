@@ -8,7 +8,7 @@
                     <div class="block-input">
                         <label for="selectType">Выберите помещение</label>
                         <select name="type" id="selectType" class="input-panel">
-                            <option value="1" selected>Гостинная</option>
+                            <option value="1" selected>Гостиная</option>
                             <option value="2">Спальня</option>
                             <option value="3">Кухня</option>
                             <option value="4">Детская</option>
@@ -27,9 +27,29 @@
                             <option value="4">Тканевый</option>
                         </select>
                     </div>
-                    <div>
+                    <div class="block-input">
+                        <label for="selectTypeTeh">Выберите технологию</label>
+                        <select name="typeTeh" id="selectTypeTeh" class="input-panel">
+                            <option value="1" selected>Бесшовные</option>
+                            <option value="2">Ниша под карниз</option>
+                            <option value="3">Криволинейные</option>
+                            <option value="4">Двухуровневые</option>
+                            <option value="5">Комбинированные</option>
+                            <option value="6">Парящие</option>
+                            <option value="7">С подсветкой</option>
+                            <option value="8">Фотопечать</option>
+                            <option value="9">Световые линии</option>
+                            <option value="10">KRAAB 3.0</option>
+                            <option value="11">Резные потолки Apply</option>
+                            <option value="12">Звездное небо</option>
+                        </select>
+                    </div>
+                    <div class="block-input">
                         <input name="square" class="input-panel" type="text" placeholder="Квадратура м. кв.">
-                    </div>    
+                    </div>
+                    <div class="block-input">
+                        <input name="price" type="text" class="input-panel" placeholder="Цена">
+                    </div>
                 </div>
                 {% for i in range(1, 5) %}
                 <div class="block">
@@ -37,17 +57,19 @@
                     <input name="count-{{ i }}" class="input-panel not-block" type="text" placeholder="Количество">
                 </div>
                 {% endfor %}
-                <input name="price" type="text" class="input-panel" placeholder="Цена">
                 <input type="file"name='file'>
-                <input class="btn-admin" type="submit" value="Отправить">
+                <div class="btn-list">
+                    <input class="btn-admin" type="submit" value="Отправить">
+                    <a href="/potolok" class="btn-admin">На главную</a>
+                </div>
             </form>
         </div>
 
         <div class="posts">
             <ul>
-            {% for i in post %}
-            <li>{{ i.post_id }} | {{ i.post_type }} | {{ i.post_price }}</li>
-            {% endfor %}
+                {% for i in post %}
+                <li>{{ i.post_id }} | {{ i.post_type }} | {{ i.post_price }}</li>
+                {% endfor %}
             </ul>
         </div>
     </div> 

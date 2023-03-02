@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="content-ceiling">
+        <div class="container">
+            <div class="breadcrumbs">
+                <div class="iter">
+                    <a href="/potolok" class="iter-title opacity">Главная</a>
+                </div>
+                <div class="iter">
+                    <a href="/potolok/ceiling" class="iter-title opacity">Виды потолков</a>
+                </div>
+                <div class="iter">
+                    <a href="#" class="iter-title">{{ title }}</a>
+                </div>
+            </div> <!-- breadcrumbs -->
+        </div> <!-- container -->
+
+        <div class="block-title-not-found">
+            <div class="title-not-found">404 not found</div>
+            <span class="text-not-found">Запрашиваемая страница не найдена.</span>
+        </div>
+
+</section>
+
+{% endblock content %}

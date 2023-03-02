@@ -2,12 +2,33 @@
 <html lang="ru">
 {% include 'head.html' %}
 <body>
+    <div class="fix-header aic" id="fixHeader">
+        <div class="container">
+            <div class="wrapper">
+                <a href="/potolok/">
+                    <img class="site-logo" src="img/logo-li.png" class="logo" alt="LOGO">
+                </a>    
+                <a class="phone" href="tel:+79220047288">+7 (922) 004 7288</a>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+let fixHeader = document.querySelector('#fixHeader');
+
+window.addEventListener('scroll', function() {
+    fixHeader.classList.toggle('visible', window.scrollY > 100);
+})
+
+</script>
+
     <header class="site-header">
         <div class="top">
             <div class="container">
                 <div class="menu-center">
                     <div class="menu-header">
-                        <a href="#">О нас</a>
+                        <a href="/potolok/about">О нас</a>
                         <a href="#">Отзывы</a>
                         <a href="#">Примеры</a>
                         <a href="#">Цены</a>
@@ -19,7 +40,9 @@
         <div class="bottom">
             <div class="container">
                 <div class="wrapper">
-                    <img src="img/logo.svg" alt="LOGO">
+                    <a href="/potolok/">
+                        <img class="site-logo" src="img/logo-li.png" alt="LOGO">
+                    </a>    
                     <div class="links">
                         <a href="#" class="styly-btn first">Калькулятор онлайн</a>
                         <a href="#" class="styly-btn modal-call">Вызвать замерщика</a>
@@ -27,11 +50,11 @@
                 </div>
                 <nav class="menu-nav">
                     <div class="wrapper">
-                        <a href="#">Акции</a>
-                        <a href="#">Цены</a>
+                        <a href="/potolok/promo">Акции</a>
+                        <a href="/potolok/price">Цены</a>
                         <a href="/potolok/ceiling">Виды потолков</a>
-                        <a href="#">Готовые решения</a>
-                        <a href="#">Светильники</a>
+                        <a href="/potolok/turnkey-solutions">Готовые решения</a>
+                        <a href="/potolok/lamp">Светильники</a>
                     </div>
                 </nav>
             </div>
@@ -42,6 +65,53 @@
 {% block content %}{% endblock content %}
 
 {% include 'footer.html' %}
+
+<div class="modal">
+    <div class="modal-show"></div>
+    <div class="window">
+        <div class="btn-close"></div>
+        <div class="modal-title">Вызвать замерщика</div>
+        <div class="modal-sub-title">С Вами свяжется наш специалист</div>
+        <form action="" class="modal-form" method="post">
+            <input type="text" name="name" class="input" placeholder="Ваше имя*">
+            <input type="text" name="phone" class="input" placeholder="Ваш телефон*">
+            <input type="submit" class="btn" value="Отправить">
+        </form>
+    </div>
+</div>
+
+<script>
+
+    let modal = document.querySelector('.modal');
+    let btnClose = document.querySelector('.btn-close');
+    let modalCall = document.querySelectorAll('.modal-call'),
+        modalShow = document.querySelector('.modal-show');
+
+    btnClose.addEventListener('click', function() {
+        modal.style.display = 'none';
+    })
+
+    for(const item of modalCall) {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.style.display = 'flex';
+        })
+    }
+
+    window.addEventListener('click', function(e) {
+        if(e.target == modalShow) {
+            modal.style.display = 'none';
+        }
+    })
+
+</script>
+
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet" />
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+
+<script>
+    AOS.init();
+</script>
 
 </body>
 </html>

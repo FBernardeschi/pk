@@ -1,14 +1,32 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 
-<div class="content">
+{% block content %}
+
+<div class="fon">
     <div class="container">
         <div class="breadcrumbs">
-            <span class="iter">
-                <a href="/potolok" class="iter-title">Главная</a>
-            </span>
-            <span class="iter">
-                <a href="/potolok/promo" class="iter-title">Акции</a>
-            </span>
+            <div class="iter">
+                <a href="/potolok" class="iter-title opacity">Главная</a>
+            </div>
+            <div class="iter">
+                <a href="#" class="iter-title">{{ title }}</a>
+            </div>
         </div>
-    </div>
-</div>
+
+        <h2 class="title-page">{{ title }}</h2>
+        <div class="list-promo">
+            {% for i in promo %}
+            <div class="item-promo" data-aos="fade-up">
+                <div class="info-promo">
+                    <div class="title-promo">{{ i[0] }}</div>
+                    <div class="about-promo">{{ i[1] }}</div>
+                    <a href="#" class="styly-btn modal-call">Вызвать замерщика</a>
+                </div>
+                <div class="photo-promo" style="background-image: url('img/promo/{{ i[2] }}');"></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>    <!-- container -->
+</div>    <!-- fon -->
+
+{% endblock content %}
