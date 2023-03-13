@@ -36,9 +36,10 @@
                             </div>
                         </div>
                         <div class="wrapper">
-                                <input type="text" class="btn-price-call" name="slick_phone" placeholder="Ваш телефон*">
-                                <input type="submit" class="btn-price-call" value="Заказать по акции">
+                                <input type="text" class="btn-price-call" name="phone" placeholder="Ваш телефон*">
+                                <input type="submit" class="btn-calc-page btn-price-call" value="Заказать по акции">
                         </div>
+                        <input type="hidden" name="name" value="promo">
                     </div>
                 </div>
             </div>
@@ -82,8 +83,11 @@
     </div> <!-- container -->
 </div>
 
-<!-- JQUERY -->
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<div class="container">
+    {% include 'calc-page.html' %}
+</div>
+
+{% include 'aggregate.html' %}
 
 <!-- SLICK SLIDER -->
 <script src="js/slick.min.js"></script>
@@ -101,8 +105,5 @@ $(document).ready(function(){
 });
 
 </script>
-
-
-
 
 {% endblock content %}

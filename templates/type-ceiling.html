@@ -16,7 +16,7 @@
         <h1 class="title-page">Виды потолков</h1>
         <section class="type-ceiling">
             <h3 class="title-type-ceiling">Фактуры</h3>
-            <div class="list">
+            <div class="list" data-aos="fade-up">
                 <div class="item-type-ceiling">
                     <a href="/potolok/type-1">
                         <span class="photo-type-ceiling" style="background-image: url('img/type-ceiling-mat.jpg');"></span>
@@ -65,7 +65,7 @@
         <div class="container">
             <h3 class="title-type-ceiling">Помещения</h3>
 
-            <div class="list">
+            <div class="list" data-aos="fade-up">
                 <div class="item-type-ceiling">
                     <a href="/potolok/ceiling-1">
                         <span class="photo-type-ceiling" style="background-image: url('img/living-room.jpg');"></span>
@@ -142,7 +142,7 @@
             </div>
 
             <h3 class="title-type-ceiling">Технологии</h3>
-            <div class="list">
+            <div class="list" data-aos="fade-up">
                 {% for i in arrayTehnology %}
                 <div class="item-type-ceiling">
                     <a href="/potolok/tehnology-{{ i[0] }}">
@@ -157,10 +157,14 @@
 
             </div>
 
-            {% include 'calc-page.html' %}
-
         </div> <!-- fon  -->
     </div> <!-- container -->
 </section>
+
+<div class="container">
+    {% include 'calc-page.html' %}
+</div>    
+
+{% include 'aggregate.html' %}
 
 {% endblock content %}

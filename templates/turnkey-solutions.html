@@ -86,7 +86,7 @@
 
         <div class="items">
             {% for i in post %}
-                <div class="items-block aos-item aos-init aos-animate" data-aos="fade-up">
+                <div class="items-block" data-aos="fade-up">
                     <div class="photo" style="background: url('upload/{{ i.post_photo }}') center no-repeat; background-size: cover;"></div>
 
                     <div class="examples-item">
@@ -110,10 +110,11 @@
     </div> <!-- container  -->
 </div> <!-- fon  -->
 
-<!-- jquery and AOS -->
+<div class="container">
+    {% include 'calc-page.html' %}
+</div>
 
-<script src="https://code.jquery.com/jquery-3.6.3.min.js
-"></script>
+{% include 'aggregate.html' %}
 
 <script>
 
@@ -135,22 +136,6 @@ inputCustomSelect.addEventListener('click', function() {
 inputCustomSelectTeh.addEventListener('click', function() {
     dropDownTeh.classList.toggle('opened');
 });
-
-// for(let el of jsOption) {
-//     el.addEventListener('click', function() {
-//         result.innerHTML = el.dataset.text;
-//         filterInput.value = el.dataset.id;
-//         dropDown.classList.toggle('opened');
-//     })
-// };
-
-// for(let elTeh of jsOptionTeh) {
-//     elTeh.addEventListener('click', function() {
-//         resultTeh.innerHTML = elTeh.dataset.text;
-//         filterInputTeh.value = elTeh.dataset.id;
-//         dropDownTeh.classList.toggle('opened');
-//     })
-// };
 
 $(document).ready(function() {
     $('.dropdown-teh .js-option').on('click', function() {

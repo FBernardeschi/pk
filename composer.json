@@ -2,6 +2,7 @@
     "require": {
         "slim/slim": "^4.11",
         "twig/twig": "^3.5",
-        "slim/psr7": "^1.6"
+        "slim/psr7": "^1.6",
+        "ultramsg/whatsapp-php-sdk": "^2.0"
     }
 }

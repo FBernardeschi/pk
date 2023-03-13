@@ -7,21 +7,41 @@
             <div class="wrapper">
                 <a href="/potolok/">
                     <img class="site-logo" src="img/logo-li.png" class="logo" alt="LOGO">
-                </a>    
-                <a class="phone" href="tel:+79220047288">+7 (922) 004 7288</a>
+                </a>
+                <div class="links-fix-menu"> 
+                    <a class="phone" href="tel:+79220047288">+7 (922) 004 7288</a>
+                    <div class="mobilMenu">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-<script>
-
-let fixHeader = document.querySelector('#fixHeader');
-
-window.addEventListener('scroll', function() {
-    fixHeader.classList.toggle('visible', window.scrollY > 100);
-})
-
-</script>
+    <div class="mobil-header">
+        <div class="close-mobil-header"></div>
+        <div class="container">
+            <div class="links">
+                <a href="#" class="styly-btn first anchor">Калькулятор онлайн</a>
+                <a href="#" class="styly-btn modal-call">Вызвать замерщика</a>
+            </div>
+            
+            <nav class="menu-container">
+                <ul class="main-menu">
+                    <li><a href="/potolok/promo">Акции</a></li>
+                    <li><a href="/potolok/price">Цены</a></li>
+                    <li><a href="/potolok/ceiling">Виды потолков</a></li>
+                    <li><a href="/potolok/turnkey-solutions">Готовые решения</a></li>
+                    <li><a href="/potolok/lamp">Светильники</a></li>
+                </ul>
+                <ul class="main-menu-2">
+                    <li><a href="/potolok/price">Цены</a></li>
+                    <li><a href="/potolok/about">О нас</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 
     <header class="site-header">
         <div class="top">
@@ -29,9 +49,7 @@ window.addEventListener('scroll', function() {
                 <div class="menu-center">
                     <div class="menu-header">
                         <a href="/potolok/about">О нас</a>
-                        <a href="#">Отзывы</a>
-                        <a href="#">Примеры</a>
-                        <a href="#">Цены</a>
+                        <a href="/potolok/price">Цены</a>
                     </div>
                     <a class="phone" href="tel:+79220047288">+7 (922) 004 7288</a>
                 </div>
@@ -44,8 +62,16 @@ window.addEventListener('scroll', function() {
                         <img class="site-logo" src="img/logo-li.png" alt="LOGO">
                     </a>    
                     <div class="links">
-                        <a href="#" class="styly-btn first">Калькулятор онлайн</a>
+                        <a href="#" class="styly-btn first anchor">Калькулятор онлайн</a>
                         <a href="#" class="styly-btn modal-call">Вызвать замерщика</a>
+                    </div>
+                    <div class="links-fix-menu"> 
+                        <a class="phone" href="tel:+79220047288">+7 (922) 004 7288</a>
+                        <div class="mobilMenu">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
                     </div>
                 </div>
                 <nav class="menu-nav">
@@ -73,22 +99,77 @@ window.addEventListener('scroll', function() {
         <div class="modal-title">Вызвать замерщика</div>
         <div class="modal-sub-title">С Вами свяжется наш специалист</div>
         <form action="" class="modal-form" method="post">
-            <input type="text" name="name" class="input" placeholder="Ваше имя*">
-            <input type="text" name="phone" class="input" placeholder="Ваш телефон*">
-            <input type="submit" class="btn" value="Отправить">
+            <input type="text" name="name" class="input input-name" placeholder="Ваше имя*">
+            <input type="text" name="phone" id='center_ok' class="input input-phone" placeholder="Ваш телефон*">
+            <input type="submit" class="btn" data-send="true" value="Отправить">
         </form>
     </div>
 </div>
 
 <script>
 
+    // Burger 
+
+let mobilMenu = document.querySelectorAll('.mobilMenu');
+let mobilHeader = document.querySelector('.mobil-header');
+let closeMobilHeader = document.querySelector('.close-mobil-header');
+
+mobilMenu.forEach((burg) => {
+    burg.addEventListener('click', function() {
+         mobilHeader.classList.toggle('_active');
+    })
+});
+
+closeMobilHeader.addEventListener('click', function() {
+    mobilHeader.classList.toggle('_active');
+})
+
+window.addEventListener('click', function(e) {
+    if(mobilHeader.classList.contains('_active')
+    && !e.target.closest('.mobilMenu') && !e.target.closest('.close-mobil-header')) {
+        mobilHeader.classList.toggle('_active');
+    }
+})
+
+// Scroll Y 100
+
+let fixHeader = document.querySelector('#fixHeader');
+
+window.addEventListener('scroll', function() {
+    fixHeader.classList.toggle('visible', window.scrollY > 100);
+})
+
+
+
+    $.fn.setCursorPosition = function(pos) {
+        if ($(this).get(0).setSelectionRange) {
+            $(this).get(0).setSelectionRange(pos, pos);
+        } else if ($(this).get(0).createTextRange) {
+            var range = $(this).get(0).createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', pos);
+            range.moveStart('character', pos);
+            range.select();
+        }
+    };
+
+    $("#center_ok").click(function(){
+        $(this).setCursorPosition(3);
+    }).mask("+7(999) 999-9999");
+    $("#center_not_ok").mask("+7(999) 999-9999");
+
     let modal = document.querySelector('.modal');
     let btnClose = document.querySelector('.btn-close');
     let modalCall = document.querySelectorAll('.modal-call'),
         modalShow = document.querySelector('.modal-show');
 
+
     btnClose.addEventListener('click', function() {
         modal.style.display = 'none';
+        $('.modal-sub-title').removeClass('successfully');
+        $('.modal-sub-title').html('С Вами свяжется наш специалист');
+        mobilHeader.classList.remove('_active');
+
     })
 
     for(const item of modalCall) {
@@ -101,16 +182,49 @@ window.addEventListener('scroll', function() {
     window.addEventListener('click', function(e) {
         if(e.target == modalShow) {
             modal.style.display = 'none';
+            $('.modal-sub-title').removeClass('successfully');
         }
     })
 
 </script>
 
-<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet" />
-<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
-
 <script>
     AOS.init();
+</script>
+
+<script>
+
+    // Send WhatsApp
+
+    $(document).ready(function() {
+        $('input[data-send=true]').on('click', function(e) {
+            e.preventDefault();
+            let inputName = $('.modal-form>.input-name').val();
+            let inputPhone = $('.modal-form>.input-phone').val();
+            if(inputName.length > 3 && inputPhone.length > 7) {
+                $.ajax({
+                    method: "POST",
+                    url: "/potolok/sender",
+                    data: {  'name': inputName, 'phone': inputPhone},
+                    success: function() {
+                        $('.modal-sub-title').html('Заявка успешно отправлена!').addClass('successfully');
+                    }
+                });
+            };
+        });
+    });
+
+    // Anchor
+
+    $('a.anchor').on('click', function(e) {
+        $('html, body').stop().animate({
+            scrollTop: $('#calculation').offset().top-100
+        }, 1000);
+        mobilHeader.classList.remove('_active');
+        e.preventDefault();
+    })
+
+
 </script>
 
 </body>

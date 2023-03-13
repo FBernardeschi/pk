@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '027845a5f7b8d1d9d745bc19b4951f9e1aba64b1',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '027845a5f7b8d1d9d745bc19b4951f9e1aba64b1',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -163,6 +163,15 @@
             'reference' => '3ffcf4b7d890770466da3b2666f82ac054e7ec72',
             'type' => 'library',
             'install_path' => __DIR__ . '/../twig/twig',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'ultramsg/whatsapp-php-sdk' => array(
+            'pretty_version' => '2.0.7',
+            'version' => '2.0.7.0',
+            'reference' => 'a4287d176d8ec1a2c44e62d4d178103e2cefa360',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ultramsg/whatsapp-php-sdk',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

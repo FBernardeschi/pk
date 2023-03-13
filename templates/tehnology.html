@@ -57,7 +57,7 @@
         <h3 class="section-title">{{ title }}, примеры и цены:</h3>
         <div class="list">
             {% for i in post %}
-            <div class="item-type-ceiling">
+            <div class="item-type-tehnology">
                 <div class="items-teh">
                     <span class="photo-type-ceiling" style="background-image: url('upload/{{ i.post_photo }}');"></span>
                     <span class="info-type-ceiling">
@@ -72,6 +72,9 @@
         </div>
 
         {% include 'calc-page.html' %}
+
+        {% include 'aggregate.html' %}
+        
     </div>
 </div>        
 

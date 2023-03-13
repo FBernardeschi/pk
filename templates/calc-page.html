@@ -1,4 +1,4 @@
-<h3 class="title-type-ceiling">Расчитать стоимость</h3>
+<h3 class="title-type-ceiling" id="calculation">Расчитать стоимость</h3>
     <div class="calculate-modul">
 
         <form action="" class="callback-form" method="post">
@@ -42,21 +42,56 @@
 
                 </div>
             </div> <!-- calculate -->
+
             <div class="price-style">
                 <div class="cost">
                     <div class="title-page-calc">Стоимость:</div>
                     <div class="result-price"><span class="result-value">200</span> ₽</div>
                 </div>
                 <div class="list-btn">
-                    <input type="text" class="input" placeholder="Ваше имя*">
-                    <input type="text" class="input" placeholder="Ваш телефон*">
-                    <input type="submit" class="btn-calc" value="Вызвать замерщика">
+                    <input type="text" name="name" class="input" placeholder="Ваше имя*">
+                    <input type="text" name="phone" class="input" placeholder="Ваш телефон*">
+                    <input type="submit" class="btn-calc btn-calc-page" value="Вызвать замерщика">
                 </div>
+            </div>
+
+            <div class="js-modal">
+                <span class="js-modal-text">
+                    Заявка успешно оставлена!
+                </span>
             </div>
         </form>
     </div>
 
 <script>
+    // Send message TG
+
+    $(document).ready(function() {
+        $('.btn-calc-page').on('click', function(e) {
+            e.preventDefault();
+            let name = $('input[name=name]').val();
+            let phone = $('input[name=phone]').val();
+            if(name && phone) {
+                $.ajax({
+                    method: "POST",
+                    url: "/potolok/sender",
+                    data: {'name': name, 'phone': phone},
+                    success: function() {
+                        $('.js-modal')
+                            .css("display", "block")
+                            .animate({ opacity: 1 }, 200);
+                        setTimeout(function() {
+                            $('.js-modal')
+                            .animate({opacity: 0}, 700)
+                            .css('display', 'none');
+                        }, 4000);              
+                    }
+                });
+            }
+        })
+    });
+
+    // Calculation
 
     let inputArea = document.querySelector('#inputArea');
     let rangeArea = document.querySelector('#rangeArea');
