@@ -1,0 +1,5 @@
+<ul>
+    {% for i in post %}
+    <li>{{ i.post_id }} | {{ i.post_type }} | {{ i.post_price }} <a href="#" data-set="{{ i.post_id }}" class="btn-admin">Удалить</a></li>
+    {% endfor %}
+</ul>

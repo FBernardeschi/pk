@@ -7,6 +7,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\UploadedFileInterface;
 use Slim\Factory\AppFactory;
+use Slim\Routing\RouteContext;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 
@@ -135,13 +136,16 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 $app->setBasePath('/potolok');
 
 $app->get('/', function($request, $response, $args) use($twig, $db) {
-    $q = $db->query('SELECT * FROM posts');
+    
+
+    $q = $db->query('SELECT * FROM posts ORDER BY post_id DESC LIMIT 10');
     $q->execute();
     $post = $q->fetchAll();
 
     $body = $twig->render('index.html', [
         'title'=>'Главная',
-        'post'=>$post
+        'post'=>$post,
+        'url'=>getUrl($request)
     ]);
     $response->getBody()->write($body);
     return $response;
@@ -152,7 +156,8 @@ $app->get('/promo', function($request, $response, $args) use($twig) {
 
     $body = $twig->render('promo.html', [
         'title'=>'Акции',
-        'promo'=>$promo
+        'promo'=>$promo,
+        'url'=>getUrl($request)
     ]);
     $response->getBody()->write($body);
     return $response;
@@ -161,21 +166,25 @@ $app->get('/promo', function($request, $response, $args) use($twig) {
 $app->get('/about', function($request, $response, $args) use($twig) {
 
     $body = $twig->render('about.html', [
-        'title'=>'О нас'
+        'title'=>'О нас',
+        'url'=>getUrl($request)
     ]);
     $response->getBody()->write($body);
     return $response;
 });
 
 $app->get('/admin', function($request, $response, $args) use($twig) {
-    if($_SESSION['logged']) {
-        return $response
-        ->withHeader('Location', '/potolok/panel')
-        ->withStatus(302);
-    };
+    if(isset($_SESSION['logged'])) {
+        if($_SESSION['logged'] == true) {
+            return $response
+            ->withHeader('Location', '/potolok/panel')
+            ->withStatus(302);
+        };
+    };    
 
     $body = $twig->render('admin.html', [
-        'title'=>'Админ панель'
+        'title'=>'Админ панель',
+        'url'=>getUrl($request)
     ]);
     $response->getBody()->write($body);
     return $response;
@@ -226,6 +235,23 @@ $app->post('/panel', function($request, $response, $args) use($twig, $db) {
     };
 
     $data = $request->getParsedBody();
+
+    if(isset($data['panel_post'])){
+        $id = $data['id'];
+        $sql = 'DELETE FROM posts WHERE post_id = ' . $id;
+        $stmt = $db->query($sql);
+        $stmt->execute();
+
+        $q = $db->query('SELECT * FROM posts');
+        $q->execute();
+        $post = $q->fetchAll();
+
+        $body = $twig->render('panel-content.html', [
+            'post'=>$post
+        ]);
+        $response->getBody()->write($body);
+        return $response;
+    }
 
     $uploadedFiles = $request->getUploadedFiles();
     $uploadedFile = $uploadedFiles['file'];
@@ -281,7 +307,8 @@ $app->get('/ceiling', function($request, $response, $args) use($twig, $db) {
     global $arrayTehnology;
     $body = $twig->render('type-ceiling.html', [
         'title'=>'Виды потолков',
-        'arrayTehnology'=>$arrayTehnology
+        'arrayTehnology'=>$arrayTehnology,
+        'url'=>getUrl($request)
     ]);
     $response->getBody()->write($body);
     return $response;
@@ -295,7 +322,8 @@ $app->get('/ceiling-{id}', function($request, $response, $args) use($twig, $db) 
 
     if($id > 8) {
         $body = $twig->render('404.html', [
-            'title'=>'404 not found'
+            'title'=>'404 not found',
+            'url'=>getUrl($request)
         ]);
         $response->getBody()->write($body);
         return $response;
@@ -316,7 +344,8 @@ $app->get('/ceiling-{id}', function($request, $response, $args) use($twig, $db) 
         'post'=>$post,
         'text'=>$text,
         'subTitle'=>$subTitle,
-        'solutionTitle'=>$solutionTitle
+        'solutionTitle'=>$solutionTitle,
+        'url'=>getUrl($request)
     ]);
     $response->getBody()->write($body);
     return $response;
@@ -328,7 +357,9 @@ $app->get('/type-{id}', function($request, $response, $args) use($twig, $db) {
 
     if($id > 4) {
         $body = $twig->render('404.html', [
-            'title'=>'404 not found'
+            'title'=>'404 not found',
+            'url'=>getUrl($request),
+            'url'=>getUrl($request)
         ]);
         $response->getBody()->write($body);
         return $response;
@@ -346,7 +377,8 @@ $app->get('/type-{id}', function($request, $response, $args) use($twig, $db) {
         'title'=>$typeCeiling .' потолок',
         'post'=>$post,
         'text'=>$text,
-        'subTitle'=>$subTitle
+        'subTitle'=>$subTitle,
+        'url'=>getUrl($request)
     ]);
     $response->getBody()->write($body);
     return $response;
@@ -359,7 +391,8 @@ $app->get('/tehnology-{id}', function($request, $response, $args) use($twig, $db
 
     if($id > 12) {
         $body = $twig->render('404.html', [
-            'title'=>'404 not found'
+            'title'=>'404 not found',
+            'url'=>getUrl($request)
         ]);
         $response->getBody()->write($body);
         return $response;
@@ -378,7 +411,8 @@ $app->get('/tehnology-{id}', function($request, $response, $args) use($twig, $db
         'post'=>$post,
         'text'=>$text,
         'subTitle'=>$typeTehnology,
-        'price'=>$price
+        'price'=>$price,
+        'url'=>getUrl($request)
     ]);
     $response->getBody()->write($body);
     return $response;
@@ -387,7 +421,8 @@ $app->get('/tehnology-{id}', function($request, $response, $args) use($twig, $db
 
 $app->get('/price', function($request, $response, $args) use ($twig) {
     $body = $twig->render('price.html', [
-        'title'=>'Цены'
+        'title'=>'Цены',
+        'url'=>getUrl($request)
     ]);
     $response->getBody()->write($body);
     return $response;
@@ -399,7 +434,8 @@ $app->get('/turnkey-solutions', function($request, $response, $args) use ($twig,
 
     $body = $twig->render('turnkey-solutions.html', [
         'title'=>'Готовые решения',
-        'post'=> $post
+        'post'=> $post,
+        'url'=>getUrl($request)
     ]);
     $response->getBody()->write($body);
     return $response;
@@ -428,7 +464,8 @@ $app->post('/turnkey-solutions', function($request, $response, $args) use ($twig
 
     $body = $twig->render('turnkey-solutions-content.html', [
         'title'=>'Готовые решения',
-        'post'=>$post
+        'post'=>$post,
+        'url'=>getUrl($request)
     ]);
 
     $response->getBody()->write($body);
@@ -440,7 +477,8 @@ $app->get('/lamp', function($request, $response, $args) use ($twig) {
 
     $body = $twig->render('lamp.html', [
         'title'=>'Светильники',
-        'lamps'=>$lamps
+        'lamps'=>$lamps,
+        'url'=>getUrl($request)
     ]);
     $response->getBody()->write($body);
     return $response;
@@ -484,6 +522,11 @@ $app->post('/{slug}', function($request, $response, $args) use ($twig) {
     $response->getBody()->write($body);
     return $response;
 });
+
+function getUrl($request) {
+    $routeContext = RouteContext::fromRequest($request);
+    return $request->getUri()->getPath();
+};
 
 function moveUploadedFile(string $directory, UploadedFileInterface $uploadedFile)
 {

@@ -69,10 +69,31 @@
         <div class="posts">
             <ul>
                 {% for i in post %}
-                <li>{{ i.post_id }} | {{ i.post_type }} | {{ i.post_price }}</li>
+                <li>{{ i.post_id }} | {{ i.post_type }} | {{ i.post_price }} <a href="#" data-set="{{ i.post_id }}" class="btn-admin">Удалить</a></li>
                 {% endfor %}
             </ul>
         </div>
     </div> 
 
 </div>
+
+
+<script>
+
+    // Ajax post panel
+
+    $('.posts a').on('click', function(e) {
+        console.log($(this).attr('data-set'));
+        $.ajax({
+            method: "POST",
+            url: "/potolok/panel",
+            data: { panel_post: 'true', id: $(this).attr('data-set') },
+            success: function(data) {
+                console.log('Ответ получен!')
+                $('.posts').html(data);
+            }
+        });
+    })
+
+
+</script>
